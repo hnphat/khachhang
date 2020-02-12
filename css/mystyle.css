@@ -1,0 +1,10 @@
+* { box-sizing: border-box; }
+
+body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; }
+
+#collapseNavBar ul li { padding-left: 10px; padding-right: 10px; }
+#collapseNavBar ul li a:hover { color: red; }
+
+.typewrite { text-align: center; }
+
+/*# sourceMappingURL=mystyle.css.map */

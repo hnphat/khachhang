@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /apps/
+Disallow: /script/
+Disallow: /css/
+Disallow: /view/
+
+Sitemap: http://hyundaiangiang.com/sitemap.xml

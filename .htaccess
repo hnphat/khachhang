@@ -1,0 +1,12 @@
+DirectoryIndex index.php
+<IfModule mod_rewrite.c>
+	IndexIgnore *
+</IfModule>
+ErrorDocument 404 error.php
+RewriteEngine On
+#RewriteRule ^content/([a-zA-Z0-9_-]+).html$ ./admin/index.php?mod=$1
+#RewriteRule ^(.*)/(.*)$ ./$1.php?page=$2
+RewriteRule ^([a-zA-Z0-9_-]+).html$ ./index.php?do=$1
+
+
+
