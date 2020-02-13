@@ -24,12 +24,21 @@ if ($_SESSION['id_user'] == 1 || $_SESSION['per'] == 4)
         "select" => "*",
         "other" => "order by guest_id desc"
     ];
-else
-    $query = [
+else {
+    if ($_SESSION['per'] == 3)
+        $query = [
+            "select" => "*",
+            // "where" => "guest_user_create = '" . $_SESSION['id_user'] . "'",
+            "where" => "guest_type = '" . 1 . "'",
+            "other" => "order by guest_id desc"
+        ];
+    else $query = [
         "select" => "*",
-        "where" => "guest_user_create = '" . $_SESSION['id_user'] . "'",
+        // "where" => "guest_user_create = '" . $_SESSION['id_user'] . "'",
+        "where" => "guest_type != '" . 1 . "'",
         "other" => "order by guest_id desc"
     ];
+}
 if (isset($_POST['find_num'])) {
     $num = (isset($_POST['number_car'])) ? $_POST['number_car'] : "";
     if ($_SESSION['id_user'] == 1 || $_SESSION['per'] == 4)
@@ -37,11 +46,17 @@ if (isset($_POST['find_num'])) {
             "select" => "*",
             "where" => "guest_number_car like '%" . $num . "%' or guest_number_car like '" . $num . "%' or guest_number_car like '%" . $num . "'"
         ];
-    else
+    else {
+        if ($_SESSION['per'] == 3)
         $query = [
             "select" => "*",
-            "where" => "guest_user_create = '" . $_SESSION['id_user'] . "' and guest_number_car like '%" . $num . "%'"
+            "where" => "guest_type = '" . 1 . "' and guest_number_car like '%" . $num . "%'"
         ];
+        else $query = [
+            "select" => "*",
+            "where" => "guest_type != '" . 1 . "' and guest_number_car like '%" . $num . "%'"
+        ];
+    }
 }
 $guest->setQuery($query);
 $dataGuest = $guest->getResultFromSelectQuery($guest->queryData());
